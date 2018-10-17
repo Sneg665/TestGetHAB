@@ -10,13 +10,18 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var textLabelLove: UILabel!
+    @IBAction func sayLove(_ sender: UIButton) {
+        textLabelLove.text = "Я люблю тебя Инесса!"
+    }
     @IBOutlet weak var ButtonTest: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
-        let test1 = "privet"
+        let test1 = "Инесса нажми на меня!"
         //var kol = test+1
         ButtonTest.setTitle(test1, for: .normal)
         // Do any additional setup after loading the view, typically from a nib.
+        
     }
 
 
