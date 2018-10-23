@@ -5,7 +5,7 @@
 //  Created by Владимир Уланов on 17.10.2018.
 //  Copyright © 2018 UlanovApp. All rights reserved.
 //
-
+import AVFoundation
 import UIKit
 
 class ViewController: UIViewController {
@@ -19,7 +19,18 @@ class ViewController: UIViewController {
         
     }
     func pomeniaemCvet(){
-        view.backgroundColor = fonarikON ? .blue: .red
+        let device = AVCaptureDevice.default(for: AVMediaType.video)
+        if let dev = device, dev.hasTorch {
+            view.backgroundColor = .blue
+            do {
+                try dev.lockForConfiguration()
+                dev.torchMode = fonarikON ? .on: .off
+                dev.unlockForConfiguration()
+            } catch {
+                print(error)
+            }
+        } else
+        {    view.backgroundColor = fonarikON ? .blue: .red }
         
     }
     @IBOutlet weak var textLabelLove: UILabel!
